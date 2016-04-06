@@ -8,11 +8,13 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class StartPushUpViewController: UIViewController {
+    @IBOutlet weak var startButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        startButton.layer.cornerRadius = 100
     }
 
     override func didReceiveMemoryWarning() {
