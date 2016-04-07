@@ -29,6 +29,8 @@ class PushUpViewController: UIViewController {
         }catch{
             
         }
+        
+        activateProximitySensor()
         // Do any additional setup after loading the view.
     }
 
@@ -40,6 +42,22 @@ class PushUpViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: true)
         tabBarController?.tabBar.hidden = true
+    }
+    
+    func activateProximitySensor() {
+        let device = UIDevice.currentDevice()
+        device.proximityMonitoringEnabled = true
+        if device.proximityMonitoringEnabled {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PushUpViewController.proximityChanged(_:)), name: "UIDeviceProximityStateDidChangeNotification", object: device)
+        }
+    }
+    
+    func proximityChanged(notification: NSNotification) {
+        if let device = notification.object as? UIDevice {
+            if device.proximityState{
+                print("Push Up!")
+            }
+        }
     }
 
     /*
