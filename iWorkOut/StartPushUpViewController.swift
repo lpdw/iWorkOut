@@ -22,6 +22,10 @@ class StartPushUpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        tabBarController?.tabBar.hidden = false
+    }
 
 }
 

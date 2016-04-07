@@ -13,6 +13,7 @@
 		C3DB29B11CB50F5D00E8D196 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DB29AF1CB50F5D00E8D196 /* Main.storyboard */; };
 		C3DB29B31CB50F5D00E8D196 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3DB29B21CB50F5D00E8D196 /* Assets.xcassets */; };
 		C3DB29B61CB50F5D00E8D196 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DB29B41CB50F5D00E8D196 /* LaunchScreen.storyboard */; };
+		C3DB29BE1CB5510700E8D196 /* PushUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DB29BD1CB5510700E8D196 /* PushUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C3DB29B21CB50F5D00E8D196 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3DB29B51CB50F5D00E8D196 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C3DB29B71CB50F5D00E8D196 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3DB29BD1CB5510700E8D196 /* PushUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				C3DB29B21CB50F5D00E8D196 /* Assets.xcassets */,
 				C3DB29B41CB50F5D00E8D196 /* LaunchScreen.storyboard */,
 				C3DB29B71CB50F5D00E8D196 /* Info.plist */,
+				C3DB29BD1CB5510700E8D196 /* PushUpViewController.swift */,
 			);
 			path = iWorkOut;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3DB29BE1CB5510700E8D196 /* PushUpViewController.swift in Sources */,
 				C3DB29AE1CB50F5D00E8D196 /* SecondViewController.swift in Sources */,
 				C3DB29AA1CB50F5D00E8D196 /* AppDelegate.swift in Sources */,
 				C3DB29AC1CB50F5D00E8D196 /* StartPushUpViewController.swift in Sources */,
