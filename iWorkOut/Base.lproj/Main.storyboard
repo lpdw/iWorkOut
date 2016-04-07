@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Item-->
@@ -95,10 +96,23 @@
                                 <color key="textColor" red="0.99607843139999996" green="0.14117647059999999" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xKD-DQ-NvF">
+                                <rect key="frame" x="545" y="72" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="iIO-AC-lmK"/>
+                                    <constraint firstAttribute="width" constant="35" id="wol-TV-Zsp"/>
+                                </constraints>
+                                <state key="normal" image="sound"/>
+                                <connections>
+                                    <action selector="switchSound:" destination="GOe-ip-ApQ" eventType="touchUpInside" id="Qwt-hc-niH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99607843137254903" green="0.14117647058823529" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="xKD-DQ-NvF" firstAttribute="trailing" secondItem="zjO-dH-RxU" secondAttribute="trailingMargin" id="ILR-62-8sQ"/>
                             <constraint firstItem="RWm-u8-gxo" firstAttribute="centerY" secondItem="zjO-dH-RxU" secondAttribute="centerY" id="VXV-RU-AUf"/>
+                            <constraint firstItem="xKD-DQ-NvF" firstAttribute="top" secondItem="Gix-YL-UmT" secondAttribute="bottom" constant="8" symbolic="YES" id="gaq-TW-wbq"/>
                             <constraint firstItem="RWm-u8-gxo" firstAttribute="centerX" secondItem="zjO-dH-RxU" secondAttribute="centerX" id="wff-fw-CC8"/>
                         </constraints>
                     </view>
@@ -106,6 +120,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="counterLabel" destination="RWm-u8-gxo" id="asy-7j-tF7"/>
+                        <outlet property="soundButton" destination="xKD-DQ-NvF" id="n6a-ze-LRJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZPG-Gm-tOE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,6 +195,7 @@
     </scenes>
     <resources>
         <image name="muscle" width="32" height="32"/>
+        <image name="sound" width="64" height="64"/>
         <image name="stat" width="32" height="32"/>
     </resources>
     <color key="tintColor" red="0.99487179489999999" green="0.14272467990000001" blue="0.2173415608" alpha="1" colorSpace="calibratedRGB"/>

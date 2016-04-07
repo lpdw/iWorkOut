@@ -11,11 +11,19 @@ import AVFoundation
 
 class PushUpViewController: UIViewController {
     @IBOutlet weak var counterLabel: UILabel!
+    @IBOutlet weak var soundButton: UIButton!
     var counter = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         counterLabel.layer.masksToBounds = true
+        NSUserDefaults.standardUserDefaults().registerDefaults(["soundState": true])
+        
+        if (NSUserDefaults.standardUserDefaults().boolForKey("soundState")){
+            soundButton.setImage(UIImage(named:"sound"), forState: .Normal)
+        } else {
+            soundButton.setImage(UIImage(named:"noSound"), forState: .Normal)
+        }
         
         do{
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
@@ -25,10 +33,6 @@ class PushUpViewController: UIViewController {
             }catch{
                 
             }
-            
-            let utterance = AVSpeechUtterance(string: "Let's push up!")
-            let synth = AVSpeechSynthesizer()
-            synth.speakUtterance(utterance)
         }catch{
             
         }
@@ -56,19 +60,36 @@ class PushUpViewController: UIViewController {
         }
     }
     
+    
+    
     func proximityChanged(notification: NSNotification) {
         if let device = notification.object as? UIDevice {
             if device.proximityState{
                 counter += 1
                 counterLabel.text = "\(counter)"
-                
-                let utterance = AVSpeechUtterance(string: "\(counter)")
-                let synth = AVSpeechSynthesizer()
-                synth.speakUtterance(utterance)
+                if NSUserDefaults.standardUserDefaults().boolForKey("soundState"){
+                    let utterance = AVSpeechUtterance(string: "\(counter)")
+                    let synth = AVSpeechSynthesizer()
+                    synth.speakUtterance(utterance)
+                }
             }
         }
     }
 
+    @IBAction func switchSound(sender: AnyObject) {
+        var state = false
+            
+        if (NSUserDefaults.standardUserDefaults().boolForKey("soundState")){
+            state = false
+            soundButton.setImage(UIImage(named:"noSound"), forState: .Normal)
+        } else {
+            state = true
+            soundButton.setImage(UIImage(named:"sound"), forState: .Normal)
+        }
+        
+        NSUserDefaults.standardUserDefaults().setObject(state, forKey: "soundState")
+    }
+    
     /*
     // MARK: - Navigation
 
