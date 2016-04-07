@@ -10,9 +10,12 @@ import UIKit
 import AVFoundation
 
 class PushUpViewController: UIViewController {
+    @IBOutlet weak var counterLabel: UILabel!
+    var counter = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        counterLabel.layer.masksToBounds = true
         
         do{
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
@@ -40,6 +43,7 @@ class PushUpViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        counterLabel.layer.cornerRadius = 100
         navigationController?.setNavigationBarHidden(false, animated: true)
         tabBarController?.tabBar.hidden = true
     }
@@ -55,7 +59,12 @@ class PushUpViewController: UIViewController {
     func proximityChanged(notification: NSNotification) {
         if let device = notification.object as? UIDevice {
             if device.proximityState{
-                print("Push Up!")
+                counter += 1
+                counterLabel.text = "\(counter)"
+                
+                let utterance = AVSpeechUtterance(string: "\(counter)")
+                let synth = AVSpeechSynthesizer()
+                synth.speakUtterance(utterance)
             }
         }
     }
