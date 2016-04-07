@@ -12,10 +12,18 @@ import AVFoundation
 class PushUpViewController: UIViewController {
     @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var soundButton: UIButton!
+    @IBOutlet weak var pauseButton: UIButton!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var coutinglabel: UILabel!
+    
+    var timer:NSTimer?
+    var time = 0
     var counter = 0
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         counterLabel.layer.masksToBounds = true
         NSUserDefaults.standardUserDefaults().registerDefaults(["soundState": true])
         
@@ -90,6 +98,20 @@ class PushUpViewController: UIViewController {
         NSUserDefaults.standardUserDefaults().setObject(state, forKey: "soundState")
     }
     
+    func setTimer() {
+        time += 1
+        let minutes = time / 60
+        let seconds = time % 60
+        let formatedTime = String(format:"%02d:%02d", minutes, seconds)
+        coutinglabel.text = formatedTime
+        
+    }
+
+    
+    @IBAction func onclickPlay(sender: AnyObject) {
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(setTimer), userInfo: nil, repeats: true)
+
+    }
     /*
     // MARK: - Navigation
 
