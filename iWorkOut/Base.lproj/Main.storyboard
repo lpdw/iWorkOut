@@ -77,14 +77,34 @@
                     <view key="view" contentMode="scaleToFill" id="zjO-dH-RxU">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWm-u8-gxo">
+                                <rect key="frame" x="200" y="200" width="200" height="200"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="hgc-0N-hXS"/>
+                                    <constraint firstAttribute="height" constant="200" id="u9n-Zk-zAN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
+                                <color key="textColor" red="0.99607843139999996" green="0.14117647059999999" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.99607843137254903" green="0.14117647058823529" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="RWm-u8-gxo" firstAttribute="centerY" secondItem="zjO-dH-RxU" secondAttribute="centerY" id="VXV-RU-AUf"/>
+                            <constraint firstItem="RWm-u8-gxo" firstAttribute="centerX" secondItem="zjO-dH-RxU" secondAttribute="centerX" id="wff-fw-CC8"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XlY-BS-b5c"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="counterLabel" destination="RWm-u8-gxo" id="asy-7j-tF7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZPG-Gm-tOE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2634" y="-1085"/>
+            <point key="canvasLocation" x="2618" y="-1021"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">
