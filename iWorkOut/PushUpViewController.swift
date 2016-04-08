@@ -21,6 +21,7 @@ class PushUpViewController: UIViewController {
     var time = 0
     var counter = 0
     var pushState = false
+    var workOut = WorkOut()
     
 
     override func viewDidLoad() {
@@ -78,6 +79,8 @@ class PushUpViewController: UIViewController {
         if let device = notification.object as? UIDevice {
             if device.proximityState{
                 counter += 1
+                workOut.addActivity(PushUp())
+                
                 counterLabel.text = "\(counter)"
                 if NSUserDefaults.standardUserDefaults().boolForKey("soundState"){
                     let utterance = AVSpeechUtterance(string: "\(counter)")
@@ -122,7 +125,9 @@ class PushUpViewController: UIViewController {
         reloadButton.layer.addAnimation(rotate, forKey: "rotate")
         pushState = false
         enableProximitySensor(pushState)
-
+        workOut.storeInHealthKit()
+        self.workOut = WorkOut()
+        
         counter = 0
         counterLabel.text = "\(counter)"
         time = 0
@@ -161,9 +166,12 @@ class PushUpViewController: UIViewController {
             timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(setTimer), userInfo: nil, repeats: true)
             playButton.setImage(UIImage(named:"pause"), forState: .Normal)
             pushState = true
+            workOut.storeInHealthKit()
+            self.workOut = WorkOut()
         }
         enableProximitySensor(pushState)
     }
+    
     /*
     // MARK: - Navigation
 

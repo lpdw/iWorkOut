@@ -15,6 +15,9 @@
 		C3DB29BE1CB5510700E8D196 /* PushUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DB29BD1CB5510700E8D196 /* PushUpViewController.swift */; };
 		C3DB29C31CB7B2DB00E8D196 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3DB29C21CB7B2DB00E8D196 /* Media.xcassets */; };
 		C3DB29C61CB7B57400E8D196 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3DB29C51CB7B57400E8D196 /* HealthKit.framework */; };
+		C3DB29C81CB7BBF100E8D196 /* WorkOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DB29C71CB7BBF100E8D196 /* WorkOut.swift */; };
+		C3DB29CA1CB7BC5000E8D196 /* PushUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DB29C91CB7BC5000E8D196 /* PushUp.swift */; };
+		C3DB29CD1CB7BD4D00E8D196 /* WorkOutActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DB29CC1CB7BD4D00E8D196 /* WorkOutActivity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,9 @@
 		C3DB29C21CB7B2DB00E8D196 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../../../Downloads/Media.xcassets; sourceTree = "<group>"; };
 		C3DB29C41CB7B57400E8D196 /* iWorkOut.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iWorkOut.entitlements; sourceTree = "<group>"; };
 		C3DB29C51CB7B57400E8D196 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		C3DB29C71CB7BBF100E8D196 /* WorkOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkOut.swift; sourceTree = "<group>"; };
+		C3DB29C91CB7BC5000E8D196 /* PushUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushUp.swift; sourceTree = "<group>"; };
+		C3DB29CC1CB7BD4D00E8D196 /* WorkOutActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkOutActivity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +78,9 @@
 				C3DB29B41CB50F5D00E8D196 /* LaunchScreen.storyboard */,
 				C3DB29B71CB50F5D00E8D196 /* Info.plist */,
 				C3DB29BD1CB5510700E8D196 /* PushUpViewController.swift */,
+				C3DB29C71CB7BBF100E8D196 /* WorkOut.swift */,
+				C3DB29C91CB7BC5000E8D196 /* PushUp.swift */,
+				C3DB29CC1CB7BD4D00E8D196 /* WorkOutActivity.swift */,
 			);
 			path = iWorkOut;
 			sourceTree = "<group>";
@@ -154,9 +163,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3DB29CA1CB7BC5000E8D196 /* PushUp.swift in Sources */,
 				C3DB29BE1CB5510700E8D196 /* PushUpViewController.swift in Sources */,
 				C3DB29AE1CB50F5D00E8D196 /* SecondViewController.swift in Sources */,
 				C3DB29AA1CB50F5D00E8D196 /* AppDelegate.swift in Sources */,
+				C3DB29CD1CB7BD4D00E8D196 /* WorkOutActivity.swift in Sources */,
+				C3DB29C81CB7BBF100E8D196 /* WorkOut.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
