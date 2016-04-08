@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import HealthKit
 
 class PushUpViewController: UIViewController {
     @IBOutlet weak var counterLabel: UILabel!
@@ -19,7 +20,7 @@ class PushUpViewController: UIViewController {
     var timer:NSTimer?
     var time = 0
     var counter = 0
-    var pushState = "1"
+    var pushState = false
     
 
     override func viewDidLoad() {
@@ -45,8 +46,7 @@ class PushUpViewController: UIViewController {
         }catch{
             
         }
-        
-        activateProximitySensor()
+
         // Do any additional setup after loading the view.
     }
 
@@ -58,15 +58,17 @@ class PushUpViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         counterLabel.layer.cornerRadius = 100
         counter = 0
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        tabBarController?.tabBar.hidden = true
     }
     
-    func activateProximitySensor() {
+    func enableProximitySensor(enable: Bool) {
         let device = UIDevice.currentDevice()
-        device.proximityMonitoringEnabled = true
-        if device.proximityMonitoringEnabled {
+        device.proximityMonitoringEnabled = enable
+        if (enable){
+            print("Enable promixity sensor")
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PushUpViewController.proximityChanged(_:)), name: "UIDeviceProximityStateDidChangeNotification", object: device)
+        } else {
+            print("Disable promixity sensor")
+            NSNotificationCenter.defaultCenter().removeObserver(self)
         }
     }
     
@@ -116,9 +118,10 @@ class PushUpViewController: UIViewController {
     @IBAction func onclickload(sender: AnyObject) {
         let rotate = CABasicAnimation(keyPath: "transform.rotation")
         rotate.byValue = M_PI * 2
-        rotate.duration = 0.5
+        rotate.duration = 0.25
         reloadButton.layer.addAnimation(rotate, forKey: "rotate")
-        
+        pushState = false
+        enableProximitySensor(pushState)
 
         counter = 0
         counterLabel.text = "\(counter)"
@@ -130,17 +133,36 @@ class PushUpViewController: UIViewController {
     }
 
     @IBAction func onclickPlay(sender: AnyObject) {
-        if pushState == "1" {
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(setTimer), userInfo: nil, repeats: true)
-            playButton.setImage(UIImage(named:"pause"), forState: .Normal)
-            pushState = "2"
-        } else if pushState == "2" {
+        let healthStore = HKHealthStore()
+        
+        let typesToShare: NSSet = {
+            return NSSet(objects: HKWorkoutType.workoutType())
+        }()
+        
+        if HKHealthStore.isHealthDataAvailable(){
+            healthStore.requestAuthorizationToShareTypes(typesToShare as? Set<HKSampleType>, readTypes: typesToShare as? Set<HKSampleType>, completion: { (succeeded, error) in
+                if succeeded && error == nil{
+                    print("Successfully received authorization")
+                }else{
+                    if let theError = error{
+                        print("Error occurred = \(theError)")
+                    }
+                }
+            })
+        } else {
+            print("Health data is not available")
+        }
+    
+        if pushState {
             timer?.invalidate()
             playButton.setImage(UIImage(named:"play"), forState: .Normal)
-            pushState = "1"
-            print(pushState)
+            pushState = false
+        } else {
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(setTimer), userInfo: nil, repeats: true)
+            playButton.setImage(UIImage(named:"pause"), forState: .Normal)
+            pushState = true
         }
-
+        enableProximitySensor(pushState)
     }
     /*
     // MARK: - Navigation
