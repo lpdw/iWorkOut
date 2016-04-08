@@ -12,13 +12,14 @@ import AVFoundation
 class PushUpViewController: UIViewController {
     @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var soundButton: UIButton!
-    @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var coutinglabel: UILabel!
+    @IBOutlet weak var reloadButton: UIButton!
     
     var timer:NSTimer?
     var time = 0
     var counter = 0
+    var pushState = "1"
     
 
     override func viewDidLoad() {
@@ -56,6 +57,7 @@ class PushUpViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         counterLabel.layer.cornerRadius = 100
+        counter = 0
         navigationController?.setNavigationBarHidden(false, animated: true)
         tabBarController?.tabBar.hidden = true
     }
@@ -97,19 +99,47 @@ class PushUpViewController: UIViewController {
         
         NSUserDefaults.standardUserDefaults().setObject(state, forKey: "soundState")
     }
-    
+
     func setTimer() {
         time += 1
         let minutes = time / 60
         let seconds = time % 60
         let formatedTime = String(format:"%02d:%02d", minutes, seconds)
         coutinglabel.text = formatedTime
+    }
+
+    //@IBAction func onclickPause(sender: AnyObject) {
+      //  timer?.invalidate()
+      //  playButton.setImage(UIImage(named:"pause"), forState: .Normal)
+    //}
+    
+    @IBAction func onclickload(sender: AnyObject) {
+        let rotate = CABasicAnimation(keyPath: "transform.rotation")
+        rotate.byValue = M_PI * 2
+        rotate.duration = 0.5
+        reloadButton.layer.addAnimation(rotate, forKey: "rotate")
+        
+
+        counter = 0
+        counterLabel.text = "\(counter)"
+        time = 0
+        coutinglabel.text = "00:00"
+        timer?.invalidate()
+        playButton.setImage(UIImage(named:"play"), forState: .Normal)
         
     }
 
-    
     @IBAction func onclickPlay(sender: AnyObject) {
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(setTimer), userInfo: nil, repeats: true)
+        if pushState == "1" {
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(setTimer), userInfo: nil, repeats: true)
+            playButton.setImage(UIImage(named:"pause"), forState: .Normal)
+            pushState = "2"
+        } else if pushState == "2" {
+            timer?.invalidate()
+            playButton.setImage(UIImage(named:"play"), forState: .Normal)
+            pushState = "1"
+            print(pushState)
+        }
 
     }
     /*
